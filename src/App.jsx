@@ -1,3 +1,4 @@
+import Lemon from './components/Lemon';
 import './App.css'
 
 function App() {
@@ -5,7 +6,7 @@ function App() {
   return (
     <>
       <div>
-        TODO Lemon Clicker
+        <Lemon />
       </div>  
     </>
   )
