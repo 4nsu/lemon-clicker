@@ -2,6 +2,7 @@ import Balance from './components/Balance'
 import Booster from './components/Booster'
 import Header from './components/Header'
 import Lemon from './components/Lemon'
+import Menu from './components/Menu'
 import { useState } from 'react'
 import './App.css'
 
@@ -19,14 +20,20 @@ function App() {
     }
 
     return (
-        <>
-            <div>
-                <Header>lemon clicker</Header>
-                <Balance total={clicks} />
-                <Lemon onClick={handleClick} />
-                <Booster value="3.2" />
+        <div className='root'>
+        {/* root-luokka huolehtii koko sovelluksen koosta */}
+            <div className='root_content'>
+            {/* root_content-luokka on yksilöllisen sisällön kääre */}
+                <div className='container clicker'>
+                {/* container-luokka huolehtii sisällön sijoittelusta */}
+                    <Header>lemon clicker</Header>
+                    <Balance total={clicks} />
+                    <Lemon onClick={handleClick} />
+                    <Booster value="3.2" />                    
+                </div>                               
             </div>
-        </>
+            <Menu items={4} /> 
+        </div>
     )
 }
 
