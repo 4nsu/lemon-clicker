@@ -8,31 +8,30 @@ import './App.css'
 
 function App() {
 
-    // Luodaan tilamuuttuja, jossa tallennetaan napautusten määrä.
-    const [clicks, setClicks] = useState(0);
+    // Luodaan tilamuuttuja, johon tallennetaan pelin laskennalliset tiedot.
+    const [stats, setStats] = useState({ clicks: 0, balance: 0, increase: 0, itemstobuy: 0 });
 
-    // Luodaan funktio, joka hakee tilamuuttujan nykyisen arvon,
-    // lisää siihen yhden, ja tallentaa tilamuuttujan uudeksi arvoksi
-    // setClicks-funktiokutsulla.
+    // Luodaan klikkauksen käsittelevä funktio.
     const handleClick = () => {
-        // Kasvatetaan napautusten määrää yhdellä.
-        setClicks(clicks + 1);
+        // Tehdään kopio stats-tilamuuttujasta.
+        let newstats = {...stats} // {...stats} avaa stats-oliorakenteen auki eli ottaa sen jokaisen alkion omaksi arvokseen
+        // Kasvatetaan napautusten lukumäärää yhdellä.
+        newstats.clicks = newstats.clicks + 1;
+        // Tallennetaan päivitetty stats-muuttuja.
+        setStats(newstats);
     }
 
     return (
-        <div className='root'>
-        {/* root-luokka huolehtii koko sovelluksen koosta */}
-            <div className='root_content'>
-            {/* root_content-luokka on yksilöllisen sisällön kääre */}
-                <div className='container clicker'>
-                {/* container-luokka huolehtii sisällön sijoittelusta */}
+        <div className='root'> {/* root-luokka huolehtii koko sovelluksen koosta */}
+            <div className='root_content'> {/* root_content-luokka on yksilöllisen sisällön kääre */}
+                <div className='container clicker'> {/* container-luokka huolehtii sisällön sijoittelusta */}
                     <Header>lemon clicker</Header>
-                    <Balance total={clicks} />
+                    <Balance total={stats.clicks} />
                     <Lemon onClick={handleClick} />
-                    <Booster value="3.2" />                    
-                </div>                               
+                    <Booster value={stats.increase} />
+                </div>
             </div>
-            <Menu items={4} /> 
+            <Menu items={stats.itemstobuy} />
         </div>
     )
 }
