@@ -1,7 +1,6 @@
-import Clicker from './pages/Clicker';
-import Menu from './components/Menu'
-import { useState } from 'react'
-import './App.css'
+import AppRouter from './components/AppRouter';
+import { useState } from 'react';
+import './App.css';
 
 function App() {
 
@@ -19,12 +18,7 @@ function App() {
     }
 
     return (
-        <div className='root'> {/* root-luokka huolehtii koko sovelluksen koosta */}
-            <div className='root_content'> {/* root_content-luokka on yksilöllisen sisällön kääre */}
-                <Clicker stats={stats} handleClick={handleClick} />
-            </div>
-            <Menu items={stats.itemstobuy} />
-        </div>
+        <AppRouter stats={stats} handleClick={handleClick} />
     )
 }
 
