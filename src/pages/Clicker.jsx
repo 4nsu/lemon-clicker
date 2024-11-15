@@ -8,7 +8,7 @@ function Clicker(props) {
     return (
         <div className="container clicker"> {/* container-luokka huolehtii sisällön sijoittelusta */}
             <Header>lemon clicker</Header>
-            <Balance total={props.stats.clicks} />
+            <Balance total={props.stats.balance} />
             <Lemon onClick={props.handleClick} />
             <Booster value={props.stats.increase} />
         </div>
