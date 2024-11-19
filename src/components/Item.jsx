@@ -13,7 +13,7 @@ function Item(props) {
     const url = getImageUrl(props.item.image)
 
     return (
-        <div    className='item'
+        <div    className={ props.disabled ? 'item item-disabled' : 'item' }
                 // Lisätään elementtiin klikkauksesta aktivoituva käsittelijä,
                 // joka kutsuu oston käsittelijää, klikatun tuotteen tunnisteella.
                 onClick={()=>{props.handlePurchase(props.item.id)}}>
