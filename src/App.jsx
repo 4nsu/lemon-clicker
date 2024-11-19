@@ -1,5 +1,6 @@
 import './App.css';
 import AppRouter from './components/AppRouter';
+import getPurchasableItems from './utils/getPurchasableItems.js';
 import items from './config/items.js';
 import { useState } from 'react';
 import round from './utils/round.js';
@@ -12,6 +13,15 @@ function App() {
     // Luodaan tilamuuttuja, johon tallennetaan pelin laskennalliset tiedot.
     const [stats, setStats] = useState({ clicks: 0, balance: 0, increase: 1, itemstobuy: 0 });
 
+    // Laskee niiden tuotteiden lkm, joiden ostamiseen on varaa
+    const countBuyableItems = (items, balance) => {
+        let total = 0
+        getPurchasableItems(items).forEach(item => {
+            if (item.price <= balance) total++
+        })
+        return total
+    }
+
     // Luodaan klikkauksen käsittelevä funktio.
     const handleClick = () => {
         // Tehdään kopio stats-tilamuuttujasta.
@@ -20,6 +30,8 @@ function App() {
         newstats.clicks = newstats.clicks + 1;
         // Kasvatetaan sitruunoiden määrää kasvatusarvolla.
         newstats.balance = round(newstats.balance + newstats.increase,1);
+        // Lasketaan ostettavissa olevien tuotteiden lukumäärä
+        newstats.itemstobuy = countBuyableItems(storeitems, newstats.balance)
         // Tallennetaan päivitetty stats-muuttuja.
         setStats(newstats);
     }
@@ -53,6 +65,8 @@ function App() {
             // Tallennetaan lasketut koostearvot
             newstats.increase = increase
             newstats.upgrades = upgrades
+            // Lasketaan ostettavissa olevien tuotteiden lukumäärä
+            newstats.itemstobuy = countBuyableItems(newstoreitems, newstats.balance)
             // Tallennetaan uudet tilamuuttujien arvot
             setStoreitems(newstoreitems)
             setStats(newstats)
