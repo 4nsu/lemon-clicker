@@ -7,7 +7,11 @@ function Store(props) {
     // map-funktio käy items.js taulukon alkiot yksitellen läpi,
     // ja suorittaa jokaiselle item-funktion,
     // joka muodostaa alkiosta Item-komponentin renderöinnin.
-    const items = props.storeitems.map(item => <Item key={item.id} item={item} />)
+    const items = props.storeitems.map(item => (
+        <Item   key={item.id} 
+                item={item} 
+                handlePurchase={props.handlePurchase} />
+    ))
 
     return (
         <div className="container">

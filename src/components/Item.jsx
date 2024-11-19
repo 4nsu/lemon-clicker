@@ -13,7 +13,10 @@ function Item(props) {
     const url = getImageUrl(props.item.image)
 
     return (
-        <div className='item'>
+        <div    className='item'
+                // Lisätään elementtiin klikkauksesta aktivoituva käsittelijä,
+                // joka kutsuu oston käsittelijää, klikatun tuotteen tunnisteella.
+                onClick={()=>{props.handlePurchase(props.item.id)}}>
             <div className='item_icon'>
                 <img src={url} alt="" />
             </div>

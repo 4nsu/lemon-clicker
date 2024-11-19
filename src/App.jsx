@@ -23,10 +23,33 @@ function App() {
         setStats(newstats);
     }
 
+    // Luodaan oston käsittelevä funktio
+    const handlePurchase = (id) => {
+
+        // Etsitään tunnistetta vastaava indeksi tuotetaulukosta
+        const index = storeitems.findIndex(storeitem => storeitem.id == id)
+        // Tarkastetaan onko käyttäjällä varaa tuotteeseen
+        if (stats.balance >= storeitems[index].price) {
+            // Luodaan tilamuuttujien kopiot
+            let newstoreitems = [...storeitems]
+            let newstats = {...stats}
+            // Kasvatetaan tuotteiden määrää yhdellä
+            newstoreitems[index].qty++
+            // Vähennetään varoista tuotteen hinta
+            newstats.balance = newstats.balance - newstoreitems[index].price
+            // TODO uusi tuotehinta
+            // Tallennetaan uudet tilamuuttujien arvot
+            setStoreitems(newstoreitems)
+            setStats(newstats)
+        }
+
+    }
+
     return (
         <AppRouter  stats={stats} 
                     storeitems={storeitems} 
-                    handleClick={handleClick} />
+                    handleClick={handleClick}
+                    handlePurchase={handlePurchase} />
     )
 }
 
