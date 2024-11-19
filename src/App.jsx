@@ -37,7 +37,9 @@ function App() {
             newstoreitems[index].qty++
             // Vähennetään varoista tuotteen hinta
             newstats.balance = newstats.balance - newstoreitems[index].price
-            // TODO uusi tuotehinta
+            // Lasketaan tuotteen uusi hinta
+            newstoreitems[index].price = Math.floor(newstoreitems[index].baseprice * Math.pow(1.15,newstoreitems[index].qty))
+            // TODO lasketaan uusi kasvatusarvo
             // Tallennetaan uudet tilamuuttujien arvot
             setStoreitems(newstoreitems)
             setStats(newstats)
