@@ -70,9 +70,9 @@ function App() {
             // Käydään tuotteet yksitellen läpi
             for (let i=0; i<storeitems.length; i++) {
                 // Lisätään tuotteiden määrä kokonaismäärään
-                upgrades = upgrades + storeitems[i].qty
+                upgrades = upgrades + newstoreitems[i].qty
                 // Lisätään tuotteen vaikutus kasvatusarvoon
-                increase = increase + storeitems[i].multiplier * storeitems[i].qty
+                increase = increase + newstoreitems[i].multiplier * newstoreitems[i].qty
             }
             // Tallennetaan lasketut koostearvot
             newstats.increase = increase
