@@ -56,7 +56,7 @@ function App() {
         // Tarkastetaan onko käyttäjällä varaa tuotteeseen
         if (stats.balance >= storeitems[index].price) {
             // Luodaan tilamuuttujien kopiot
-            let newstoreitems = [...storeitems]
+            let newstoreitems = JSON.parse(JSON.stringify(storeitems))
             let newstats = {...stats}
             // Kasvatetaan tuotteiden määrää yhdellä
             newstoreitems[index].qty++
@@ -86,11 +86,18 @@ function App() {
 
     }
 
+    const handleReset = () => {
+        // Päivitetään tilamuuttujat alkuarvoihin.
+        setStats(initialstats)
+        setStoreitems(items)
+    }
+
     return (
         <AppRouter  stats={stats} 
                     storeitems={storeitems} 
                     handleClick={handleClick}
-                    handlePurchase={handlePurchase} />
+                    handlePurchase={handlePurchase}
+                    handleReset={handleReset} />
     )
 }
 
